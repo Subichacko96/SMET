@@ -1,0 +1,89 @@
+<div class="wrapper">
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  {{> waiterSidebar}}
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Orders</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">order</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+
+
+
+      <div class="row">
+        <table class="table table-bordered col-sm-12 col-lg-10 mx-auto">
+          <thead>
+
+            <tr>
+              <th scope="col">Table No</th>
+              <th scope="col">Order</th>
+              <th scope="col">Options</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each data}}
+
+            <tr>
+              <th scope="row">{{this.table_no}}</th>
+              <td style="width: 60%;">
+                <ul class="list-group ">
+                  {{#each this.items}}
+                  <li class="list-group-item p-1 ">
+                    <span class=" badge badge-pill badge-success">{{this.qty}}</span>
+                    {{this.itemName}}
+                    <span class="badge badge-warning">{{this.order_type}}</span>
+
+                  </li>
+                  {{/each}}
+                </ul>
+
+              </td>
+              <td>
+                <a class="btn btn-primary px-4 m-2" href="editorder/{{this.id}}" role="button">Add</a>
+                <a class="btn btn-success px-4 m-2" href="vieworder/{{this.id}}" role="button">View</a>
+                <a class="btn btn-danger m-2 px-3" href="cancelorder/{{this.id}}" role="button">Cancel</a>
+
+              </td>
+            </tr>
+            {{/each}}
+
+
+          </tbody>
+        </table>
+      </div>
+
+    </section>
+
+
+
+
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  {{> footer}}
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+{{> flash}}

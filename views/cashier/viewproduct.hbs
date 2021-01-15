@@ -1,0 +1,131 @@
+<div class="wrapper">
+  <!-- Main Sidebar Container -->
+  {{> cashiersidebar}}
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>View Items</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">View Items</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-12">
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="title" style="text-align: center;">View Item Details</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class=" card-body" id="reload">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>Table No</th>
+                    <th>Waiter Name</th>
+                    <th>Customer Name</th>
+
+                    <th>Order</th>
+                    <th>Manage</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each data}}
+                  <!--example values start-->
+                  <tr>
+                    <td>{{this.table_no}}</td>
+                    <td>{{this.waiterName}}</td>
+                    <td>{{this.name}}</td>
+                    <td>
+                      <ul class="list-group">
+                        {{#each this.items}}
+                        <li class="list-group-item">
+                          <span class="badge badge-pill badge-success">{{this.qty}}</span>
+                          {{this.itemName}}
+                          <span class="badge badge-warning">{{this.order_type}}</span>
+
+                        </li>
+                        {{/each}}
+                      </ul>
+                    </td>
+                    <td>
+                      <a class="btn btn-primary px-4 m-2" href="editorder/{{this.id}}" role="button">Add</a>
+                      <a class="btn btn-success px-4 m-2" href="vieworder/{{this.id}}" role="button">View</a>
+                      <a class="btn btn-danger m-2 px-3" href="cancelorder/{{this.id}}" role="button">Cancel</a>
+                      <a class="btn btn-info m-2 px-3" href="generatebill/{{this.id}}" role="button">Generate Bill</a>
+
+                    </td>
+                  </tr>
+                  {{/each}}
+
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <th>Table No</th>
+                    <th>Waiter Name</th>
+                    <th>Customer Name</th>
+                    <th>Order</th>
+                    <th>Manage</th>
+                  </tr>
+                  <!--example values-->
+                </tfoot>
+              </table>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  {{> footer}}
+
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+{{> flash}}
+<script>
+
+  $(function () {
+    $("#example1").DataTable()
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+    });
+  })
+
+  function reload() {
+    setInterval(function () {
+      $("#reload").load(" #reload");
+
+
+    }, 1000);
+  }
+
+  //reload()
+</script>

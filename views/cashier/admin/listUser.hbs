@@ -1,0 +1,134 @@
+<link rel="stylesheet" href="/custom.css">
+
+
+<div class="wrapper">
+
+
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  {{> cashiersidebar}}
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Add User</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active"> Users</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+      <h2>{{user}}</h2>
+    </section>
+
+    <section class="content">
+      <div class="container-fluid ">
+
+        <div class="row ">
+          <!-- Group Starting -->
+          <div class="group col-lg-5 col-12  mx-auto">
+            <h1>
+              Cashier
+            </h1>
+            <div class="row">
+              {{#each cashierData}}
+              <div class="card col-lg-10 col-12 col-md-6 mx-auto bg-dark cashier-card">
+                <div class="row">
+                  <div class="card-body">
+                    <h2 class="">{{this.name}}</h2>
+                    <p class="card-subtitle  mb-2 text-muted">{{this.email}}</p>
+                    <a class="btn btn-success btn-sm" href="/admin/edituser/{{this.id}}" role="button">Edit</a>
+                    <a class="btn btn-danger btn-sm" href="/admin/deleteuser/{{this.id}}" role="button">Delete</a>
+                  </div>
+                  <div class="icon mr-4  my-auto fa-icon">
+                    <i class=" fas fa-file-invoice-dollar"></i>
+                  </div>
+                </div>
+              </div>
+              {{/each}}
+            </div>
+          </div>
+          <!-- Group End -->
+          <!-- Group Starting -->
+          <div class="group col-lg-5 col-12  mx-auto">
+            <h1>
+              Kitchen
+            </h1>
+            <div class="row">
+              {{#each kitchenData}}
+              <div class="card col-lg-10 col-12 col-md-6 mx-auto bg-dark kitchen-card">
+                <div class="row">
+                  <div class="card-body">
+                    <h2 class="">{{this.name}}</h2>
+                    <p class="card-subtitle  mb-2 text-muted">{{this.email}}</p>
+
+                    <a class="btn btn-success btn-sm" href="/admin/edituser/{{this.id}}" role="button">Edit</a>
+                    <a class="btn btn-danger btn-sm" href="/admin/deleteuser/{{this.id}}" role="button">Delete</a>
+
+                  </div>
+                  <div class="icon mr-4  my-auto fa-icon" ">
+                    <i class=" fas fa-utensils"></i>
+                  </div>
+                </div>
+              </div>
+              {{/each}}
+            </div>
+          </div>
+          <!-- Group End -->
+        </div>
+
+        <!-- Group Starting -->
+        <div class="group col-lg-11 col-12 mx-auto my-5">
+          <h1>
+            Waiter
+          </h1>
+          <div class="row">
+            {{#each waiterData}}
+            <div class="card col-lg-5 col-12 col-md-6 mx-auto bg-dark waiter-card">
+              <div class="row">
+                <div class="card-body">
+                  <h2 class="">{{this.name}}</h2>
+                  <p class="card-subtitle  mb-2 text-muted">{{this.email}}</p>
+                  <a class="btn btn-success btn-sm" href="/admin/edituser/{{this.id}}" role="button">Edit</a>
+                  <a class="btn btn-danger btn-sm" href="/admin/deleteuser/{{this.id}}" role="button">Delete</a>
+
+                </div>
+                <div class="icon mr-4  my-auto fa-icon">
+                  <i class="fas fa-user-tie"></i>
+                </div>
+              </div>
+            </div>
+            {{/each}}
+          </div>
+        </div>
+        <!-- Group End -->
+      </div>
+  </div>
+
+
+</div>
+</section>
+<!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+{{> footer}}
+<!-- Control Sidebar -->
+<aside class="control-sidebar control-sidebar-dark">
+  <!-- Control sidebar content goes here -->
+</aside>
+<!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+{{> flash}}

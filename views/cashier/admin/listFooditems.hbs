@@ -1,0 +1,108 @@
+<div class="wrapper">
+
+
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    {{> cashiersidebar}}
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0 text-dark">Food Items</h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">Category</li>
+                        </ol>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+
+        <!-- Main content -->
+        <section class="content">
+            <h2>{{user}}</h2>
+        </section>
+
+        <section class="content">
+            <div class=" card-body container-fluid ">
+                <div class="col-12 table-responsive">
+                    <table id="example1" class="table table-striped">
+                        <thead class="table-head bg-dark">
+                            <tr class="bg-dark">
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Category</th>
+                                <th scope="col">Remarks</th>
+                                <th scope="col">Manage</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each data}}
+                            <tr>
+                                <th scope="row">{{@index}}</th>
+                                <td>{{this.name}}</td>
+                                <td>{{this.price}}</td>
+                                <td>{{this.category}}</td>
+                                <td>{{this.remarks}}</td>
+                                <td>
+                                    <a class="btn btn-success btn-sm" href="/admin/edititem/{{this.id}}"
+                                        role="button">Edit</a>
+
+                                    <a class="btn btn-danger btn-sm" href="/admin/deletefooditem/{{this.id}}"
+                                        role="button">Delete</a>
+                                </td>
+                            </tr>
+
+                            {{/each}}
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+
+
+
+
+
+
+            </div>
+    </div>
+
+
+</div>
+</section>
+<!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+{{> footer}}
+<!-- Control Sidebar -->
+<aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+</aside>
+<!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+{{> flash}}
+<script>
+    $(function () {
+        $("#example1").DataTable();
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+        });
+    });
+</script>

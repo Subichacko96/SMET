@@ -1,0 +1,14 @@
+.cloudcity-style,
+.login-box-msg {
+    color: #1c87f3;
+    font-weight: 500;
+    user-select: none;
+}
+
+@media (min-width: 250px) and (max-width: 350px) {
+    #usertable {
+        width: 100px;
+
+
+    }
+}

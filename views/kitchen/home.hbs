@@ -1,0 +1,127 @@
+<div class="wrapper">
+
+
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  {{> kitchenSidebar}}
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Dashboard</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Dashboard Kitchen</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <div class="row p-3">
+      <table class="table table-bordered col-sm-12 col-lg-12 ">
+        <thead>
+
+          <tr>
+            <th scope="col" style="width: 100px;">Table No</th>
+            <th scope="col" style="width: 200px;">Waiter Name</th>
+            <th scope="col">Order</th>
+            <th scope="col" style="width: 350px;">Options</th>
+          </tr>
+        </thead>
+        <tbody id="tablebody">
+
+
+
+        </tbody>
+      </table>
+    </div>
+
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  {{> footer}}
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+{{> flash}}
+<script src="https://cloudcity.co.in/socket.io/socket.io.js"></script>
+<script>
+  const displayData = (orders) => {
+    let tableRow = ''
+    let orderLi = ''
+    let text = 'Take'
+    let colorBtn = 'btn-primary'
+    let tableBody = document.getElementById("tablebody")
+    orders.forEach((item) => {
+      orderLi = ''
+
+      item.items.forEach((list) => {
+        if (list.status == 'Processing') {
+          text = 'Take'
+          colorBtn = 'btn-warning'
+        } else if (list.status == 'Cooking') {
+          text = 'Ready'
+          colorBtn = 'btn-success'
+        } else {
+          text = '<i class="fas fa-check-circle"></i> '
+          colorBtn = 'btn-link'
+        }
+        if (list.status == 'Processing' || list.status == 'Cooking') {
+
+        }
+
+
+        orderLi += `
+        <li class="list-group-item">
+         <table class="table">
+  
+  <tbody>
+    <tr>
+      <th scope="row">${list.qty}</th>
+      <td>${list.itemName}</td>
+      <td>${list.order_type}</td>
+      <td>${list.status}</td>
+      <td>
+        <a class="btn ${colorBtn} mx-3" href="orderstatus/${item.orderId}/${list.itemId}" role="button">${text}</a>
+      </td>
+    </tr>
+   
+  </tbody>
+</table>
+         </li>
+        `
+      })
+      tableRow += `<tr><th scope="row">${item.table_no}</th><th scope="row">${item.waiterName}</th> <th scope="row"><ul class="list-group">${orderLi}  </ul> </th> <th> 
+         <a class="btn btn-primary px-4 m-2" href="orderready/${item.orderId}" role="button">Ready</a>
+              <a class="btn btn-success px-4 m-2" href="vieworder/${item.orderId}" role="button">View</a>
+       
+
+      </th> </tr>`
+
+    })
+    tableBody.innerHTML = tableRow
+  }
+  const socket = io();
+
+
+
+  socket.on('data', (data) => {
+    displayData(data)
+  });
+
+
+
+</script>

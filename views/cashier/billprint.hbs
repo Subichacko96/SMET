@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        * {
+            font-size: 16px;
+            font-family: 'Times New Roman';
+        }
+
+        td,
+        th,
+        tr,
+        table.caltable,
+        table.centered {
+            border-width: 1px;
+            border-color: gray;
+            border-collapse: collapse;
+            border-style: outset;
+            margin: 0 auto;
+
+        }
+
+        table.dateandtime {
+            border: none;
+        }
+
+        td.description,
+        th.description {
+            width: 100px;
+            max-width: 100px;
+        }
+
+        td.quantity,
+        th.quantity {
+            width: 40px;
+            max-width: 40px;
+            word-break: break-all;
+        }
+
+        td.price,
+        th.price {
+            width: 40px;
+            max-width: 40px;
+            word-break: break-all;
+        }
+
+        .centered {
+            text-align: center;
+            align-content: center;
+        }
+
+        .centeredTable {
+            text-align: center;
+            align-content: center;
+        }
+
+        .ticket {
+
+            width: 80mm;
+            max-width: 80mm;
+        }
+
+        img {
+            max-width: inherit;
+            width: inherit;
+        }
+
+        .centerelement {
+            margin: 0 auto;
+        }
+
+        .caltable {
+            margin-top: 10px;
+            width: 75mm;
+        }
+
+        .invoice {
+            margin: 0px 10px 0 11px;
+            border: 0;
+        }
+
+        @media print {
+
+            .hidden-print,
+            .hidden-print * {
+                display: none !important;
+            }
+        }
+
+    </style>
+    <title>Receipt example</title>
+</head>
+
+<body>
+    <div class="ticket ">
+
+        <div class="centerelement">
+            <p class="centered">RECEIPT
+                <br>Cloud City, Shack Restaurant
+                <br>Pathanamthitta</p>
+            <p class="invoice"><b>Invoice No : {{invoiceNo}}</b></p>
+
+            <!-- Date and time   -->
+            <table class="caltable centeredTable dateandtime">
+                <tr>
+                    <td class="date">
+                        Date :
+                        <script>var today = new Date();
+                            var dd = String(today.getDate()).padStart(2, '0');
+                            var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+                            var yyyy = today.getFullYear();
+
+                            today = dd + '/' + mm + '/' + yyyy;
+                            document.write(today);</script>
+                    </td>
+
+                    <td class="time">
+                        Time :
+                        <script>
+                            function formatAMPM(date) {
+                                var hours = date.getHours();
+                                var minutes = date.getMinutes();
+                                var ampm = hours >= 12 ? 'pm' : 'am';
+                                hours = hours % 12;
+                                hours = hours ? hours : 12; // the hour '0' should be '12'
+                                minutes = minutes < 10 ? '0' + minutes : minutes;
+                                var strTime = hours + ':' + minutes + ' ' + ampm;
+                                return strTime;
+                            }
+
+                            document.write(formatAMPM(new Date));
+                        </script>
+                    </td>
+                </tr>
+            </table>
+
+            <!-- Main Table -->
+            <table class="centered" style="width: 75mm;">
+                <thead>
+                    <tr>
+                        <th class="quantity">No</th>
+                        <th class="description">Item</th>
+                        <th class="quantity">Qty</th>
+                        <th class="price">Rate</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each items}}
+                    <tr>
+                        <td class="quantity">
+                            <script>
+                                var no = Number({{@index}})
+                                document.write(no + 1);</script>
+                        </td>
+
+                        <td class="description">{{this.itemName}}</td>
+                        <td class="quantity">
+                            {{this.qty}}
+                        </td>
+                        <td class="price">{{this.item_price}}</td>
+                        <td class="price">
+                            <script>
+                                var price = Number({{ this.item_price }})
+                                var qty = Number({{ this.qty }})
+                                var amount = price * qty
+                                document.write(amount);</script>
+
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+
+            <table class="caltable centered">
+                <tr>
+                    <th>Subtotal </th>
+                    <td>{{total_bill}}</td>
+                </tr>
+                <tr>
+                    <th>Discount ({{discount}}) %
+                    </th>
+                    <td id="disText"> </td>
+                </tr>
+                <tr>
+                    <th>Total </th>
+                    <td id="total"></td>
+                </tr>
+                <!--
+                <tr>
+                    <th>CGST (6%)</th>
+                    <td id="cgst"></td>
+                </tr>
+                <tr>
+                    <th>SGST (6%) </th>
+                    <td id="sgst"></td>
+                </tr>
+                -->
+                <tr>
+                    <th>Grand Total </th>
+                    <td id='grandTotal'> </td>
+                </tr>
+            </table>
+
+
+
+            <p class="centered"><br>cloudcity.co.in <br>Thanks for your purchase!
+                <br>Cloud City</p>
+
+        </div>
+
+
+    </div>
+    <button id="btnPrint" class="hidden-print">Print</button>
+    <script>  let discount = Number("{{discount}}")
+        let grand_total
+        let invoice = {}
+        let customerName = " {{customerName}}"
+        let customerMob = "{{phoneNo}}"
+        let id = "{{orderid}}"
+        let invoiceNo = "{{ invoiceNo }}"
+        let lastDigitPre = invoiceNo.substr(-5)
+        let lastDigit = Number(lastDigitPre) + 1
+
+        const find_bill = () => {
+            let = subTotal = '{{total_bill}}'
+
+            let total = Number(subTotal) - Number(subTotal) * Number(discount) * 0.01
+            let cgst_rate = 0
+            let sgst_rate = 0
+            let cgst = total * cgst_rate * 0.01
+            let sgst = total * sgst_rate * 0.01
+            grand_total = Math.round(total + sgst + cgst)
+
+            invoice = {
+                customer: customerName,
+                customerMob: customerName,
+                total: grand_total,
+                order: id,
+                invoiceNo: invoiceNo,
+                lastDigit: lastDigit,
+            }
+            document.getElementById("disText").innerHTML = Number(subTotal) * Number(discount) * 0.01
+            document.getElementById("total").innerHTML = total
+            //document.getElementById("cgst").innerHTML = Math.round(sgst * 100) / 100
+            // document.getElementById("sgst").innerHTML = Math.round(sgst * 100) / 100
+            document.getElementById("grandTotal").innerHTML = grand_total
+
+        }
+        find_bill()
+        window.print();
+        const $btnPrint = document.querySelector("#btnPrint");
+        $btnPrint.addEventListener("click", () => {
+            window.print();
+        });
+    </script>
+</body>
+
+</html>

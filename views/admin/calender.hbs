@@ -1,0 +1,70 @@
+<div class="wrapper">
+
+
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    {{> sidebar}}
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0 text-dark">Select a Date</h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">Select a date</li>
+                        </ol>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+
+
+        <section class="content">
+            <div class="container-fluid ">
+                <form action="" method="post">
+                    <div class="">
+                        <div class="row">
+
+                            <div class="form-group col-12 col-lg-6 col-xl-3 mx-auto">
+                                <label for="nameInput">Select a date</label>
+                                <input type="date" class="form-control" id="nameInput" name="date" required>
+
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+
+                            <button type="submit" class="btn btn-primary col-12 col-lg-6 col-xl-3  mx-auto"> Submit
+                            </button>
+                        </div>
+
+                    </div>
+                </form>
+
+
+            </div>
+    </div>
+
+
+</div>
+</section>
+<!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+{{> footer}}
+<!-- Control Sidebar -->
+<aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+</aside>
+<!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+{{> flash}}

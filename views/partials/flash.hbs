@@ -1,0 +1,28 @@
+{{#if messages.success}}
+{{#each messages.success}}
+<script>
+  toastr.options.closeButton = true;
+  toastr.success("{{msg}}", 'Success');
+  console.log("working 747326472614872")
+</script>
+{{/each}}
+{{/if}}
+
+{{#if messages.errors}}
+{{#each messages.errors}}
+<script>
+  console.log('errorsssss')
+  toastr.options.closeButton = true;
+  toastr.error("{{msg}}", 'Error');
+</script>
+{{/each}}
+{{/if}}
+
+{{#if messages.info}}
+{{#each messages.info}}
+<script>
+  toastr.options.closeButton = true;
+  toastr.warning("{{msg}}", 'Info');
+</script>
+{{/each}}
+{{/if}}

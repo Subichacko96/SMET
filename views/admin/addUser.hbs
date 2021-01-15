@@ -1,0 +1,95 @@
+<div class="wrapper">
+
+
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  {{> sidebar}}
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Add User</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Add User</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="col-md-12">
+          <!-- general form elements disabled -->
+          <div class="card card-primary">
+            <div class="card-header">
+              <h2 style="text-align:center">{{title}}</h2>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <form role="form" method="POST" action="">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <!-- text input -->
+                    <div class="form-group">
+                      <label for="nameInput">Name of the User</label>
+                      <input type="text" class="form-control" id="nameInput" aria-describedby="Enter the User name"
+                        placeholder="Enter the User name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="nameInput">Email</label>
+                      <input type="email" class="form-control" id="nameInput" aria-describedby="Remarks"
+                        placeholder="Email for login" name="email" required>
+                    </div>
+                  </div>
+
+
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label for="nameInput">User Type</label>
+                      <select class="form-control form-control" name="role">
+                        <option> Select a Type</option>
+                        <option value="waiter">Waiter </option>
+                        <option value="cashier">Cashier </option>
+                        <option value="kitchen">Kitchen </option>
+                      </select>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="nameInput">Password</label>
+                      <input type="password" class="form-control" id="nameInput" aria-describedby="Remarks"
+                        placeholder="Password" name="password" required>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div class="card-footer">
+              <button type="submit" class="btn btn-primary" style="margin-left:47%">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  {{> footer}}
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+{{> flash}}

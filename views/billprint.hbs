@@ -1,0 +1,246 @@
+<div class="wrapper">
+    <!-- Navbar -->
+    {{> sidebar}}
+    <!-- Main Sidebar Container -->
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Invoice</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">Invoice</li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card-header bg-primary">
+                            <h2 style="text-align:center">Invoice Details</h2>
+                        </div>
+
+
+                        <!-- Main content -->
+                        <div class="invoice p-3 mb-3">
+                            <!-- title row -->
+                            <div class="row">
+
+                                <!-- /.col -->
+                            </div>
+                            <!-- info row -->
+                            <div class="row invoice-info">
+                                <div class="col-sm-4 invoice-col">
+
+                                    <address>
+                                        <strong>Admin, Inc.</strong><br>
+                                        85, 1st Cross 3rd Main,<br>
+                                        Mira Road, Maharashtra<br>
+                                        Phone&nbsp;&nbsp;: <a
+                                            href="tel:(+91)9512025835">(+91)&nbsp;&nbsp;9512025835</a><br>
+                                        Email&nbsp;&nbsp;&nbsp;&nbsp;:<a href="mailto:info@almasaeedstudio.com">
+                                            info@almasaeedstudio.com</a>
+                                    </address>
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-sm-3 invoice-col">
+                                    <address>
+                                        <strong>John Doe</strong><br>
+                                        Phone&nbsp;&nbsp;: <a
+                                            href="tel:(+91)9656456789">(+91)&nbsp;&nbsp;9656456789</a><br>
+                                        Email&nbsp;&nbsp;&nbsp;&nbsp;:<a href="mailto:johndeo@example.com">
+                                            johndeo@example.com</a>
+                                    </address>
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-sm-3 visits-col">
+                                    <b>Table Number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;</b> <label
+                                        for="table_no">4C</label><br>
+                                    <b>Number Of Visits&nbsp; :&nbsp;<label for="visit_no">10</label></b><br>
+                                    <b>Waiter
+                                        Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;</b>
+                                    <label for="waiter_name">sajay
+                                        kumar</label><br>
+                                </div>
+                                <div class="col-sm-2 invoice-col">
+                                    <b>Invoice Number&nbsp;&nbsp;&nbsp;:&nbsp;</b> <label for="inv_no">#124C</label><br>
+                                    <b>Date&nbsp;&nbsp;&nbsp;:&nbsp;</b><label for="date">
+                                        <script>var today = new Date();
+                                            var dd = String(today.getDate()).padStart(2, '0');
+                                            var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+                                            var yyyy = today.getFullYear();
+
+                                            today = dd + '/' + mm + '/' + yyyy;
+                                            document.write(today);</script></label><br>
+                                    <b>Time&nbsp;&nbsp;&nbsp;:&nbsp;</b>
+                                    <label for="time">
+                                        <script>
+                                            function formatAMPM(date) {
+                                                var hours = date.getHours();
+                                                var minutes = date.getMinutes();
+                                                var ampm = hours >= 12 ? 'pm' : 'am';
+                                                hours = hours % 12;
+                                                hours = hours ? hours : 12; // the hour '0' should be '12'
+                                                minutes = minutes < 10 ? '0' + minutes : minutes;
+                                                var strTime = hours + ':' + minutes + ' ' + ampm;
+                                                return strTime;
+                                            }
+
+                                            document.write(formatAMPM(new Date));
+                                        </script>
+                                    </label><br>
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+
+                            <!-- Table row -->
+                            <div class="row">
+                                <div class="col-12 table-responsive">
+                                    <table class="table table-striped">
+                                        <thead class="table-head bg-dark">
+                                            <tr>
+                                                <th>Sl.</th>
+                                                <th>Items</th>
+                                                <th>Quantity</th>
+                                                <th>Rate</th>
+                                                <th>Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>Call of Duty</td>
+                                                <td>455-981-221</td>
+                                                <td>El snort testosterone trophy driving gloves handsome</td>
+                                                <td>$64.50</td>
+                                            </tr>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>Need for Speed IV</td>
+                                                <td>247-925-726</td>
+                                                <td>Wes Anderson umami biodiesel</td>
+                                                <td>$50.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>Monsters DVD</td>
+                                                <td>735-845-642</td>
+                                                <td>Terry Richardson helvetica tousled street art master</td>
+                                                <td>$10.70</td>
+                                            </tr>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>Grown Ups Blue Ray</td>
+                                                <td>422-568-642</td>
+                                                <td>Tousled lomo letterpress</td>
+                                                <td>$25.99</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="bill-remarks">Remarks :</label><br>
+                                    <div class="box box-primary">
+                                        <textarea rows="4" cols="50" name="comment" form="usrform"
+                                            style="border: 3px solid #cccccc;">
+                                       </textarea>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-6">
+                                    <p class="lead">Calculate Amount</p>
+
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <tr>
+                                                <th style="width:50%">Subtotal </th>
+                                                <td>$250.30</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Discount </th>
+                                                <td>$10.34</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Total </th>
+                                                <td>$5.80</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Grand Total </th>
+                                                <td>$265.24</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- /.col -->
+                            </div>
+
+                            <!-- /.row -->
+
+                            <!-- this row will not appear when printing -->
+                            <div class="row no-print">
+                                <div class="col-12">
+                                    <a href="/billprint" target="_blank" class="btn btn-default"><i
+                                            class="fas fa-print"></i> Print</a>
+                                    <button type="button" class="btn btn-success float-right"><i
+                                            class="far fa-credit-card"></i> Submit
+                                        Payment
+                                    </button>
+                                    <button type="button" class="btn btn-primary float-right"
+                                        style="margin-right: 5px;">
+                                        <i class="fas fa-download"></i> Generate PDF
+                                    </button>
+                                </div>
+                            </div><br>
+                            <div class="col sm-12">
+                                <p class="lead">Payment Methods:</p>
+                                <img src="../../dist/img/credit/visa.png" alt="Visa">
+                                <img src="../../dist/img/credit/mastercard.png" alt="Mastercard">
+                                <img src="../../dist/img/credit/american-express.png" alt="American Express">
+                                <img src="../../dist/img/credit/paypal2.png" alt="Paypal">
+
+                                <p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
+                                    Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning
+                                    heekya handango imeem
+                                    plugg
+                                    dopplr jibjab, movity jajah plickers sifteo edmodo ifttt zimbra.
+                                </p>
+                            </div>
+                        </div>
+                        <!-- /.invoice -->
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    {{> footer}}
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+{{> flash}}
+<script type="text/javascript">
+    window.addEventListener("load", window.print());
+</script>

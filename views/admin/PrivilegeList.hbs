@@ -1,0 +1,152 @@
+<div class="wrapper">
+  <!-- Main Sidebar Container -->
+  {{> sidebar}}
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+
+            <h1>
+              Privilege Customers
+            </h1>
+
+
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Privilege Customers</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-12">
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="title" style="text-align: center;"> Privilege Customers</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class=" card-body" id="reload">
+              {{#if isExport}}
+              <button class="btn btn-secondary mb-4" onclick="exportTableToExcel('example1', 'Orders-data')">Export
+                Table
+                Data To Excel File</button>
+              {{/if}}
+              <div class="table-responsive-sm">
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>Customer Name</th>
+                      <th>Mobile No</th>
+
+                      <th>Remarks</th>
+                      <th>Delete</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {{#each customers}}
+                    <!--example values start-->
+                    <tr>
+                      <td>
+                        <script>
+                          var no = {{@index}}  + 1
+
+                          document.write(no);</script>
+
+                      </td>
+                      <td>{{this.name}}</td>
+                      <td>{{this.phone}}</td>
+                      <td>
+                        {{this.remarks}}
+                      </td>
+                      <td>
+                        <a href="deleteprivilege/{{this._id}}" style="color: red;">
+                          <i class="fas fa-trash"></i>
+                        </a>
+                      </td>
+
+                    </tr>
+                    {{/each}}
+
+                  </tbody>
+
+                </table>
+              </div>
+
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  {{> footer}}
+
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+{{> flash}}
+<script>
+
+  $(function () {
+    $("#example1").DataTable()
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+    });
+  })
+  function exportTableToExcel(tableID, filename = '') {
+    var downloadurl;
+    var dataFileType = 'application/vnd.ms-excel';
+    var tableSelect = document.getElementById(tableID);
+    var tableHTMLData = tableSelect.outerHTML.replace(/ /g, '%20');
+
+    // Specify file name
+    filename = filename ? filename + '.xls' : 'export_excel_data.xls';
+
+    // Create download link element
+    downloadurl = document.createElement("a");
+
+    document.body.appendChild(downloadurl);
+
+    if (navigator.msSaveOrOpenBlob) {
+      var blob = new Blob(['\ufeff', tableHTMLData], {
+        type: dataFileType
+      });
+      navigator.msSaveOrOpenBlob(blob, filename);
+    } else {
+      // Create a link to the file
+      downloadurl.href = 'data:' + dataFileType + ', ' + tableHTMLData;
+
+      // Setting the file name
+      downloadurl.download = filename;
+
+      //triggering the function
+      downloadurl.click();
+    }
+  }
+
+</script>
