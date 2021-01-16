@@ -10,13 +10,9 @@ const path = require('path');
 const bodyParser = require('body-parser');
 
 //Routes
-const waiterRoutes = require('./routes/waiter.routes');
+
 const adminRoutes = require('./routes/admin.routes');
 const authRoutes = require('./routes/auth.routes');
-const cashierRoutes = require('./routes/cashier.routes');
-const kitchenRoutes = require('./routes/kitchen.routes');
-const kitchenController = require('./controllers/kitchen');
-
 //For .env
 dotenv.config({
   path: '.env',
@@ -25,7 +21,7 @@ dotenv.config({
 //express initialisation
 const app = express();
 
-// socket IO
+/* socket IO
 var http = require('http').createServer(app);
 var io = require('socket.io')(http);
 
@@ -41,7 +37,7 @@ io.on('connection', async (socket) => {
     socket.emit('data', orderData);
   }, 1000);
 });
-
+*/
 //PORT
 const PORT = process.env.PORT || 5000;
 
@@ -81,6 +77,7 @@ app.use(
   })
 );
 app.use(passport.initialize());
+
 app.use(passport.session());
 
 /**
@@ -115,17 +112,10 @@ app.use('/', authRoutes);
 //Admin Routes
 app.use('/admin', adminRoutes);
 
-//Cashier Routes
-app.use('/cashier', cashierRoutes);
-
-// Waiter Routes
-app.use('/waiter', waiterRoutes);
-
-//Kitchen Routes
-
-app.use('/kitchen', kitchenRoutes);
 
 //PORT Running
-http.listen(PORT, () => {
+app.listen(PORT, () => {
   console.log(`App is running at http://localhost:${PORT}/login`);
 });
+
+

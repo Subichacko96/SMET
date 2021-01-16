@@ -1,11 +1,7 @@
 const User = require('../../models/User');
-const Category = require('../../models/categories');
-const Items = require('../../models/items');
-const Invoice = require('../../models/invoice');
-
-const Customers = require('../../models/customers');
-
-const Orders = require('../../models/orders');
+const Category = require('../../models/section');
+const Course= require('../../models/course');
+const College = require('../../models/college');
 
 exports.generateAdminUser = async function (user) {
   return new Promise(async (resolve, reject) => {
@@ -23,7 +19,7 @@ exports.generateAdminUser = async function (user) {
 
 //Add (Create) ..
 
-exports.addUser = async function (user) {
+/*exports.addUser = async function (user) {
   return new Promise(async (resolve, reject) => {
     try {
       await User.create(user);
@@ -35,9 +31,9 @@ exports.addUser = async function (user) {
       return reject(error);
     }
   });
-};
+};*/
 
-exports.addCategory = async function (category) {
+exports.addSection = async function (category) {
   return new Promise(async (resolve, reject) => {
     try {
       await Category.create(category);
@@ -51,7 +47,7 @@ exports.addCategory = async function (category) {
   });
 };
 
-exports.addItem = async function (item) {
+/*exports.addItem = async function (item) {
   return new Promise(async (resolve, reject) => {
     try {
       let data = await Items.create(item);
@@ -757,4 +753,4 @@ exports.deleteCard = async function (id) {
       return reject(error);
     }
   });
-};
+};*/

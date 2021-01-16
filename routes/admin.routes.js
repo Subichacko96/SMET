@@ -3,23 +3,28 @@ const router = express.Router();
 
 const passportConfig = require('../config/passport');
 const adminController = require('../controllers/admin');
-const cashierController = require('../controllers/cashier');
+//const cashierController = require('../controllers/cashier');
 
 // Add Create
 router.get(
   '/dashboard',
   passportConfig.isAuthenticated,
-  passportConfig.isAdmin,
+  //passportConfig.isAdmin,
   adminController.index
 );
-
 router.get(
-  '/add/user',
+  '/add/section',
   passportConfig.isAuthenticated,
   //passportConfig.isAdmin,
-  adminController.addUser
+  adminController.addSection
 );
 router.post(
+  '/add/section',
+  passportConfig.isAuthenticated,
+  //passportConfig.isAdmin,
+  adminController.addSection
+);
+/*router.post(
   '/add/user',
   passportConfig.isAuthenticated,
   //passportConfig.isAdmin,
@@ -229,5 +234,5 @@ router.get(
   passportConfig.isAuthenticated,
   passportConfig.isAdmin,
   adminController.deletePrivilege
-);
+);*/
 module.exports = router;

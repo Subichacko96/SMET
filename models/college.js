@@ -25,9 +25,9 @@ const collegeSchema = new mongoose.Schema(
       trim: true
     },
     course_id: {
-      type: String,
-      unique: true
-    }
+      type:mongoose.Schema.Types.ObjectId,
+      ref:'Course'
+     }
 
   },
   { timestamps: true }

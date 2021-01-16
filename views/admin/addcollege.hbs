@@ -4,7 +4,7 @@
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  {{> cashiersidebar}}
+  {{> sidebar}}
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -12,12 +12,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Add Food Item</h1>
+            <h1 class="m-0 text-dark">Add College</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Add Food Item</li>
+              <li class="breadcrumb-item active">Add College</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -37,41 +37,45 @@
         <div class="rounded mb-3 bg-white">
           <div class="card card-primary">
             <div class="card-header">
-              <h2 style="text-align:center">Add Food Items</h2>
+              <h2 style="text-align:center">Add College</h2>
             </div>
           </div>
           <form action="" method="post">
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group mt-3">
-                  <label for="nameInput">Name of the Food Item</label>
-                  <input type="text" class="form-control" id="nameInput" aria-describedby="Enter the Food Item name"
-                    placeholder="Enter the Food Item name" name="name" required>
+                  <label for="nameInput">Name of the College</label>
+                  <input type="text" class="form-control" id="nameInput" aria-describedby="Enter the  name"
+                    placeholder="Enter the  name" name="name" required>
 
                 </div>
                 <div class="form-group mt-3">
-                  <label for="nameInput">Price</label>
-                  <input type="number" class="form-control" id="nameInput" aria-describedby="Remarks"
-                    placeholder="Price" name="price" required>
+                  <label for="nameInput">Place</label>
+                  <input type="text" class="form-control" id="nameInput" aria-describedby="place" placeholder="place"
+                    name="place" required>
                 </div>
-              </div>
-              <div class="col-md-6">
                 <div class="form-group mt-3">
-                  <label for="nameInput">Category</label>
-                  <select class="form-control form-control" name="category">
-                    <option> Select Category</option>
-                    {{#each data}}
-                    <option value="{{this.id}}">{{this.name}}</option>
-                    {{/each}}
-
-                  </select>
+                  <label for="nameInput">Phone</label>
+                  <input type="number" class="form-control" id="nameInput" aria-describedby="Phone" placeholder="Phone"
+                    name="Phone" required>
+                </div>
+                <div class="form-group mt-3">
+                  <label for="nameInput">University</label>
+                  <input type="text" class="form-control" id="nameInput" aria-describedby="University"
+                    placeholder="University" name="University" required>
+                </div>
+                <div class="form-group mt-3">
+                  <label for="nameInput">Website</label>
+                  <input type="text" class="form-control" id="nameInput" aria-describedby="Website"
+                    placeholder="Website" name="Website" required>
                 </div>
                 <div class="form-group mt-3">
                   <label for="nameInput">Remarks</label>
-                  <input type="text" class="form-control" id="nameInput" aria-describedby="Remarks"
-                    placeholder="Remarks" name="remarks">
+                  <input type="text" class="form-control" id="nameInput" aria-describedby="Website"
+                    placeholder="Remarks" name="Remarks" required>
                 </div>
               </div>
+
             </div>
 
             <div class="row">

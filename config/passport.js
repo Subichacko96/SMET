@@ -1,7 +1,7 @@
 const passport = require('passport');
 const { Strategy: LocalStrategy } = require('passport-local');
 const _ = require('lodash');
-const CONSTANTS = require('../utils/constants');
+//const CONSTANTS = require('../utils/constants');
 const User = require('../models/User');
 
 passport.serializeUser((user, done) => {
@@ -55,37 +55,3 @@ exports.isAuthenticated = (req, res, next) => {
   res.redirect('/login');
 };
 
-exports.isAdmin = (req, res, next) => {
-  if (req.user.role === CONSTANTS.ADMIN) {
-    return next();
-  }
-  req.flash('errors', { msg: 'Unauthorized' });
-  res.redirect('/login');
-};
-
-exports.isCashier = (req, res, next) => {
-  if (req.user.role === CONSTANTS.CASHIER) {
-    return next();
-  }
-  req.flash('errors', { msg: 'Unauthorized' });
-  res.redirect('/login');
-};
-
-exports.isWaiter = (req, res, next) => {
-  if (
-    req.user.role === CONSTANTS.WAITER ||
-    req.user.role === CONSTANTS.CASHIER
-  ) {
-    return next();
-  }
-  req.flash('errors', { msg: 'Unauthorized' });
-  res.redirect('/login');
-};
-
-exports.isKitchen = (req, res, next) => {
-  if (req.user.role === CONSTANTS.KITCHEN) {
-    return next();
-  }
-  req.flash('errors', { msg: 'Unauthorized' });
-  res.redirect('/login');
-};

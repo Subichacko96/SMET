@@ -1,50 +1,29 @@
 const db = require('../helpers/app/userHelper');
 
 // Dashboard
-exports.index = async (req, res) => {
-  let todaysOrder = await db.todaysOrders();
-  todaysOrder = todaysOrder.data;
-
-  let procesingOrder = await db.procesingOrders();
-  procesingOrder = procesingOrder.data;
-
-  let cookingOrder = await db.kitchenOrders();
-  cookingOrder = cookingOrder.data;
-
-  let closedOrder = await db.closedOrders();
-  closedOrder = closedOrder.data;
-
-  let lastFiveOrders = await db.todaysOrders();
-  lastFiveOrders = lastFiveOrders.tatalOrders;
-  lastFiveOrders = lastFiveOrders.slice(-5);
-
-  let cardCount = await db.listCard();
-  cardCount = cardCount.cardCount;
+exports.index = async (req, res) => { 
   return res.render('home', {
     title: 'Dashboard',
     user: 'Admin',
-    totalOrders: todaysOrder,
-    procesingOrder: procesingOrder,
-    cookingOrder: cookingOrder,
-    closedOrder: closedOrder,
-    lastFiveOrders: lastFiveOrders,
-    cardCount: cardCount,
   });
-};
+};/*
+exports.addSection= async (req, res) => { 
+  return res.render('admin/addSection', {
+    title: 'Dashboard',
+    user: 'Admin',
+  });
+};*/
 
-// Add (Create)
-exports.addUser = async (req, res) => {
+ //Add (Create)
+/*exports.addSection = async (req, res) => {
   try {
     if (req.method === 'POST') {
-      const user = {
-        name: req.body.name,
-        email: req.body.email,
-        role: req.body.role,
-        password: req.body.password,
+      const section = {
+        section_name: req.body.name
       };
 
-      const userData = await db.addUser(user);
-      if (userData) {
+      const sectionData = await db.sectionUser();
+      if (sectionData) {
         req.flash('success', {
           msg: 'User added ',
         });
@@ -71,35 +50,37 @@ exports.addUser = async (req, res) => {
     console.log(error);
     return res.redirect(req.url);
   }
-};
+};*/
 
-exports.addCategory = async (req, res) => {
+exports.addSection = async (req, res) => {
   try {
     if (req.method === 'POST') {
-      const addCategory = await db.addCategory(req.body);
-      req.flash('success', {
-        msg: 'Category added ',
-      });
-      res.render('admin/addCategory', {
-        title: 'Add Category',
-        name: req.user.name,
-      });
+      const category = {
+        name: req.body.name
+        
+      };
+      const catData = await db.addSection(category);
+      if (catData) {
+       console.log("cat added")
+      } else {
+        console.log('error in cat add')
+      }
+      res.redirect('admin/addsection');
     } else {
-      return res.render('admin/addCategory', {
-        title: 'Add Category',
-        name: req.user.name,
+      return res.render('admin/addsection', {
+        title: 'Add cat',
+        //name: req.user.name,
       });
     }
   } catch (error) {
-    req.flash('errors', {
-      msg: 'oops some error occured',
-    });
+    //req.flash('errors', {
+     // msg: 'oops some error occured'
     console.log(error);
     return res.redirect(req.url);
   }
 };
 
-exports.addItem = async (req, res) => {
+/*exports.addItem = async (req, res) => {
   try {
     if (req.method === 'POST') {
       const addItems = await db.addItem(req.body);
@@ -729,3 +710,4 @@ exports.deletePrivilege = async (req, res) => {
     return res.redirect(req.url);
   }
 };
+*/

@@ -1,6 +1,6 @@
 const chalk = require('chalk');
 const passport = require('passport');
-const CONSTANTS = require('../utils/constants');
+//const CONSTANTS = require('../utils/constants');
 const userHelper = require('../helpers/app/userHelper');
 
 // Add Admin account if doesn't exist
@@ -8,8 +8,7 @@ const userHelper = require('../helpers/app/userHelper');
 const generateAdminAccount = async () => {
   const user = {
     name: 'Admin User',
-    email: 'admin@cloudcity.com',
-    role: CONSTANTS.ADMIN,
+    email: 'admin@smet.com',
     password: process.env.ADMIN_PASSWORD,
   };
   try {
@@ -40,6 +39,7 @@ exports.login = (req, res) => {
 };
 
 exports.authenticateUser = async (req, res, next) => {
+  console.log("----------------------------")
   passport.authenticate('local', (err, user, info) => {
     if (err) {
       req.flash('errors', {
@@ -60,27 +60,10 @@ exports.authenticateUser = async (req, res, next) => {
         });
         return res.redirect('/login');
       }
-      if (user.role === CONSTANTS.ADMIN) {
-        req.flash('success', {
-          msg: 'Success! You are logged in.',
-        });
-        res.redirect('/admin/dashboard');
-      } else if (user.role === CONSTANTS.CASHIER) {
-        req.flash('success', {
-          msg: 'Success! You are logged in.',
-        });
-        res.redirect('/cashier/dashboard');
-      } else if (user.role === CONSTANTS.WAITER) {
-        req.flash('success', {
-          msg: 'Success! You are logged in.',
-        });
-        res.redirect('/waiter/dashboard');
-      } else if (user.role === CONSTANTS.KITCHEN) {
-        req.flash('success', {
-          msg: 'Success! You are logged in.',
-        });
-        res.redirect('/kitchen/dashboard');
-      }
+      req.flash('success', {
+        msg: 'success',
+      });
+      return res.redirect('admin/dashboard');
     });
   })(req, res, next);
 };
@@ -100,6 +83,4 @@ exports.logout = (req, res) => {
   });
 };
 
-exports.homePage = (req, res) => {
-  return res.render('frontend');
-};
+
